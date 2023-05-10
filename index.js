@@ -20,6 +20,10 @@ class FileLogger {
     this.logFilePath = logPath || path.join(__dirname, 'log');
   }
 
+	child(prefix) {
+		return new FileLogger(`${this.prefix} ${prefix}`, this.logFilePath)
+	}
+
 	logInfo(message) {
 		this._log(message, 'info');
 	}
@@ -37,15 +41,16 @@ class FileLogger {
 	}
 
   _log(message, level = 'info') {
+		let logText;
 		// Check the type of the input and handle accordingly
 		if (typeof message === 'string') {
-			logText = input;
-		} else if (typeof input === 'object') {
+			logText = message;
+		} else if (typeof message === 'object') {
 			// Stringify the object to make it human-readable
-			logText = JSON.stringify(input, null, 2);
+			logText = JSON.stringify(message, null, 2);
 		} else {
 			// If the input is not a string or an object, convert it to a string
-			logText = String(input);
+			logText = String(message);
 		}
 
     const finalText = `${this.prefix} [${LEVELS[level]}] ${logText}`;
