@@ -1,6 +1,6 @@
 {
   "name": "cln-file-logger",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A logging class that logs to a file and CoreLightning for plugins",
   "main": "index.js",
   "type": "module",
